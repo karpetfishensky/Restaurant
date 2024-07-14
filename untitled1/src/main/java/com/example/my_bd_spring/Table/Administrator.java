@@ -52,8 +52,3 @@ public class Administrator extends BaseEntity {
         this.restaurant = restaurant;
     }
 }
-
-
-
-
-
