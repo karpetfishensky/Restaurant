@@ -37,7 +37,7 @@ public class LunchCombo extends BaseEntity{
         isKidsCombo = kidsCombo;
     }
 
-    @ManyToMany(mappedBy = "LunchCombo")
+    @ManyToMany(mappedBy = "LunchCombo", targetEntity = Menu.class, fetch = FetchType.EAGER)
     public Set<Menu> getMainDishID() {
         return mainDishID;
     }
@@ -46,7 +46,7 @@ public class LunchCombo extends BaseEntity{
         this.mainDishID = mainDishID;
     }
 
-    @ManyToMany(mappedBy = "LunchCombo")
+    @ManyToMany(mappedBy = "LunchCombo", targetEntity = Menu.class, fetch = FetchType.EAGER)
     public Set<Menu> getAppetizerDishID() {
         return appetizerDishID;
     }
@@ -54,7 +54,7 @@ public class LunchCombo extends BaseEntity{
         this.appetizerDishID = appetizerDishID;
     }
 
-    @ManyToMany(mappedBy = "LunchCombo")
+    @ManyToMany(mappedBy = "LunchCombo", targetEntity = Menu.class, fetch = FetchType.EAGER)
     public Set<Menu> getDrinkDishID() {
         return drinkDishID;
     }
@@ -62,7 +62,7 @@ public class LunchCombo extends BaseEntity{
         this.drinkDishID = drinkDishID;
     }
 
-    @ManyToMany(mappedBy = "LunchCombo")
+    @ManyToMany(mappedBy = "LunchCombo", targetEntity = Menu.class, fetch = FetchType.EAGER)
     public Set<Menu> getDessertDishID() {
         return dessertDishID;
     }

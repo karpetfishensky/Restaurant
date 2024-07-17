@@ -44,7 +44,7 @@ public class Administrator extends BaseEntity {
     }
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    @JoinColumn(name = "Restaurant", nullable = false)
     public Restaurant getRestaurant() {
         return restaurant;
     }

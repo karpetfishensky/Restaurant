@@ -10,8 +10,8 @@ public class Menu extends BaseEntity {
     private String nameOfDish;
     private String typeOfDish;
     private float price;
-    private Set<Chef> typeOfCuisine;
-    private LunchCombo lunchCombo;
+    private Chef chef;
+    private Set<LunchCombo> lunchCombo;
 
     public Menu(String nameOfDish, String typeOfDish, float price) {
         this.nameOfDish = nameOfDish;
@@ -45,18 +45,24 @@ public class Menu extends BaseEntity {
     }
 
     @ManyToOne(optional = false)
-    public Set<Chef> getTypeOfCuisine() {
-        return typeOfCuisine;
+    @JoinColumn(name = "Chef", nullable = false)
+    public Chef getTypeOfCuisine() {
+        return chef;
     }
-    public void setTypeOfCuisine(Set<Chef> typeOfCuisine) {
-        this.typeOfCuisine = typeOfCuisine;
+    public void setTypeOfCuisine(Chef typeOfCuisine) {
+        this.chef = typeOfCuisine;
     }
 
     @ManyToMany
-    public LunchCombo getLunchCombo() {
+    @JoinTable(
+            name = "Menu_Combo",
+            joinColumns = @JoinColumn(name = "dish_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_in_combo_id")
+    )
+    public Set<LunchCombo> getLunchCombo() {
         return lunchCombo;
     }
-    public void setLunchCombo(LunchCombo lunchCombo) {
+    public void setLunchCombo(Set<LunchCombo> lunchCombo) {
         this.lunchCombo = lunchCombo;
     }
 }

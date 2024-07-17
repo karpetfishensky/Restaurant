@@ -15,7 +15,7 @@ public class Booking extends BaseEntity {
     private Integer countOfVisitors;
     private String visitorName;
     private String visitorPhoneNumber;
-    private Set<Desk> deskID;
+    private Desk desk;
 
     public Booking(Date bookingDate, Integer countOfVisitors, String visitorName, String visitorPhoneNumber) {
         this.bookingDate = bookingDate;
@@ -56,11 +56,12 @@ public class Booking extends BaseEntity {
         this.countOfVisitors = countOfVisitors;
     }
 
-    @ManyToMany(mappedBy = "Booking")
-    public Set<Desk> getDeskID() {
-        return deskID;
+    @ManyToOne
+    @JoinColumn(name = "Desk", nullable = false)
+    public Desk getDeskID() {
+        return desk;
     }
-    public void setDeskID(Set<Desk> deskID) {
-        this.deskID = deskID;
+    public void setDeskID(Desk deskID) {
+        this.desk = desk;
     }
 }

@@ -26,7 +26,7 @@ public class Desk extends BaseEntity {
     }
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
+    @JoinColumn(name = "Restaurant", nullable = false)
     public Restaurant getRestaurant() {
         return restaurant;
     }
@@ -34,7 +34,7 @@ public class Desk extends BaseEntity {
         this.restaurant = restaurant;
     }
 
-    @ManyToMany(mappedBy = "desk")
+    @OneToMany(mappedBy = "Desk", targetEntity = Booking.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Booking> getBooking() {
         return booking;
     }

@@ -54,9 +54,7 @@ public class Chef extends BaseEntity{
     }
 
     @ManyToOne(optional = false)
-    @JoinTable(name = "Chef_Restaurant",
-            joinColumns = @JoinColumn(name = "chef_id"),
-            inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
+    @JoinColumn(name = "Restaurant", nullable = false)
     public Restaurant getRestaurant() {
         return restaurant;
     }
@@ -64,7 +62,7 @@ public class Chef extends BaseEntity{
         this.restaurant = restaurant;
     }
 
-    @OneToMany(mappedBy = "Chef", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "Chef", targetEntity = Menu.class, fetch = FetchType.LAZY)
     public Set<Menu> getMenu() {
         return menu;
     }

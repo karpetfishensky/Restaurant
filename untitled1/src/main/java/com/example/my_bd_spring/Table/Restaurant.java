@@ -10,9 +10,9 @@ public class Restaurant extends BaseEntity {
 
     private String address;
     private String phone_number;
-    private Administrator administrator;
-    private Chef chef;
-    private Desk desk;
+    private Set<Administrator> administrator;
+    private Set<Chef> chef;
+    private Set<Desk> desk;
 
     public Restaurant(String address, String phone_number) {
         this.address = address;
@@ -37,27 +37,32 @@ public class Restaurant extends BaseEntity {
         this.phone_number = phone_number;
     }
 
-    @OneToMany(mappedBy = "Restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Administrator getAdministrator() {
+    @OneToMany(mappedBy = "Restaurant",targetEntity =  Administrator.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Set<Administrator> getAdministrator() {
         return administrator;
     }
-    public void setAdministrator(Administrator administrator) {
+    public void setAdministrator(Set<Administrator> administrator) {
         this.administrator = administrator;
     }
 
-    @OneToMany(mappedBy = "Restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Chef getChef() {
+    @OneToMany(mappedBy = "Restaurant",targetEntity = Chef.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "Chef_Restaurant",
+//            joinColumns = @JoinColumn(name = "chef_id"),
+//            inverseJoinColumns = @JoinColumn(name = "restaurant_id")
+//    )
+    public Set<Chef> getChef() {
         return chef;
     }
-    public void setChef(Chef chef) {
+    public void setChef(Set<Chef> chef) {
         this.chef = chef;
     }
 
-    @OneToMany(mappedBy = "Restaurant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Desk getDesk() {
+    @OneToMany(mappedBy = "Restaurant", targetEntity = Desk.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public Set<Desk> getDesk() {
         return desk;
     }
-    public void setDesk(Desk desk) {
+    public void setDesk(Set<Desk> desk) {
         this.desk = desk;
     }
 }
